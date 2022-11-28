@@ -15,6 +15,8 @@ const Meal = new mongoose.Schema({
     date: Date
 });
 
-const MealModel = mongoose.model("meal", Meal);
+module.exports = Meal;
 
-module.exports = MealModel;
+// const MealModel = mongoose.model("meal", Meal);
+
+// module.exports = MealModel;

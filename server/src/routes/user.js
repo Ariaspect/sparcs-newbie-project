@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const UserModel = require('../models/user');
+const MealSchema = require('../models/mealschema');
 
 const router = express.Router();
 
@@ -20,13 +21,17 @@ class UserDB {
                 console.log("[UserDB] Inserting new user: " + username);
                 const newUser = new UserModel({ username });
                 const res = await newUser.save();
-                return { success: false, data: res };
+
+                console.log("[MealDB] Init new collection: users." + username);
+                const MealModel = mongoose.model("meal", MealSchema, "users." + username);
+
+                return { success: true };
             } else {
-                console.log("[UserDB] Error: existing username")
-                return { success: false, data: findRes };
+                console.log("[UserDB] existing username")
+                return { success: true };
             }
         } catch (e) {
-            return { success: false, data: `DB Error: ${ e }` };
+            return { success: false };
         }
     }
 }
