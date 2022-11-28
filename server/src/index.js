@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const statusRouter = require('./routes/status');
+const userRouter = require('./routes/user');
 
 const app = express();
 const port = process.env.PORT;
@@ -24,6 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use('/status', statusRouter);
+app.use('/user', userRouter);
 
 const OMongooseOption = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose.connect(process.env.MONGO_URI, OMongooseOption).then(
