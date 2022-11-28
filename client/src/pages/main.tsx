@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { APIBase } from "../tools/api";
 import { useInterval } from "../tools/interval";
 
 const MainPage = () => {
+
+    const navigate = useNavigate();
 
     // checking server connection
     const [ BStatus, setBStatus ] = React.useState<boolean>(false);
@@ -20,8 +23,12 @@ const MainPage = () => {
     // input fields
     const [ username, setUsername ] = React.useState<string>("");
 
-    const acquireDB = async (username: string) => {
-        const res = await axios.post(APIBase + "/user" + "/initUser", { username: username });
+    const acquireDB = (username: string) => {
+        const asyncFun = async () => {
+            await axios.post(APIBase + "/user" + "/initUser", { username: username });
+            navigate("/user/" + username);
+        }
+        asyncFun().catch( (e) => window.alert(e) );
     };
 
     return (
