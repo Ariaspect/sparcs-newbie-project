@@ -1,0 +1,10 @@
+.sidebar {
+    color: white;
+    background-color: rgb(70, 255, 193);
+    
+    /* border: solid 3px black; */
+    display: flex
+}
+.sidebar h3 {
+    margin: 15px 20px
+}
