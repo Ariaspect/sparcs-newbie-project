@@ -12,7 +12,7 @@ const Meal = new mongoose.Schema({
         default: 'snack'
     },
     food: [MealItem],
-    date: Date
+    date: String,
 });
 
 module.exports = Meal;
