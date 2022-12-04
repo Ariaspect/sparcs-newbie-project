@@ -36,7 +36,7 @@ const UserPage = () => {
                     onRequestClose={ () => setModalState(false) }
                     style={ { overlay: { backgroundColor: 'rgba(0, 0, 0, 0.60' } } }
                 >
-                    <AddMealModal onClickClose={callbackModal}></AddMealModal>
+                    <AddMealModal onClickClose={callbackModal} username={username}></AddMealModal>
                 </Modal>
             </div>
             <Outlet/>
