@@ -7,9 +7,10 @@ const MealItem = new mongoose.Schema({
 
 const Meal = new mongoose.Schema({
     mealType: {
-        type: String,
-        enum: ['breakfast', 'lunch', 'dinner', 'snack'],
-        default: 'snack'
+        type: Number,
+        min: 0,
+        max: 3,
+        default: 0
     },
     food: [MealItem],
     date: String,
