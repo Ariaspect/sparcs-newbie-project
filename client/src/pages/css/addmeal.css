@@ -30,7 +30,15 @@
 .food-x {
     margin: 20px 20px;
 }
-
-button {
-    margin: 20px 20px;
+.close-button {
+    margin: 0px 20px;
+    margin-bottom: 20px;
+}
+.food-remove-button {
+    margin: 0px 20px;
+    margin-bottom: 20px;
+}
+.addfood-button, .submit-button {
+    margin-right: 20px;
+    margin-bottom: 20px;
 }

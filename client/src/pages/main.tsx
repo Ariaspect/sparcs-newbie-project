@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { APIBase } from "../tools/api";
 import { useInterval } from "../tools/interval";
 
+import "./css/main.css"
+
 const MainPage = () => {
 
     const navigate = useNavigate();
@@ -34,11 +36,11 @@ const MainPage = () => {
     return (
         <>
             <div className="server-status">
-                { BStatus ? "Connection success!" : "Not connected." }
+                { BStatus ? <h3 className={"conn-success"}>Connection success!</h3> : <h3 className={"conn-failed"}>Not connected.</h3> }
             </div>
             <div className={"account-action"}>
                 Username: <input type={"text"} value={username} onChange={ ((e) => setUsername(e.target.value)) }/>
-                <div className={"start-button"} onClick={ ((e) => acquireDB(username)) }>Get Started</div>
+                <button className={"start-button"} onClick={ ((e) => acquireDB(username)) }>Get Started</button>
             </div>
         </>
     

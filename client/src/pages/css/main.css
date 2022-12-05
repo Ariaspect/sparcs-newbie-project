@@ -1,0 +1,18 @@
+.account-action {
+    position: fixed; 
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+.server-status {
+    font-size: 20px;
+    text-align: center;
+}
+.conn-success {
+    margin: 0px 0px;
+    background-color: greenyellow;
+}
+.conn-failed {
+    margin: 0px 0px;
+    background-color: orange;
+}

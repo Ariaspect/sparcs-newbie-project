@@ -12,6 +12,7 @@ h3 {
 
 .meal-type {
     margin-left: 5px;
+    width: fit-content;
 }
 .meal-type:hover {
     text-decoration: underline;
@@ -23,7 +24,7 @@ h3 {
 }
 
 .day-block {
-    border: 2px solid black;
+    border: 5px solid black;
     margin: 20px 20px;
     display: flex;
     justify-content: start;
@@ -35,8 +36,9 @@ h3 {
     min-height: 120px;
     width: 20%;
     padding: 10px;
+    padding-bottom: 20px;
     margin: 0% 2%;
-    border: 1px solid black;
+    border: 3px solid black;
     border-radius: 10%;
     display: inline-block;
 }
@@ -44,9 +46,26 @@ h3 {
     box-shadow: 0 0 12px rgba(33,33,33,.2); 
   }
 
+.x-button-h3 {
+    position: relative;
+    top: -3px;
+    margin: 0px;
+    padding: 0px;
+}
 .x-button {
     float: right;
     font-size: 18px;
+    transition: background-color .5s, color .5s;
     color: red;
-    margin: 10px 20px;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    margin-top: 8px;
+    border: 2px solid red;
+    border-radius: 50%;
+}
+.x-button:hover {
+    background-color: red;
+    color: white;
 }

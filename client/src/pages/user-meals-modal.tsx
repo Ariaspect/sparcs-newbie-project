@@ -23,10 +23,25 @@ interface MealAPI {
     date: string,
 }
 
+interface Preset {
+    alias: string,
+    preset: string,
+}
+
 const AddMealModal = ( { onClickClose, username, editflag, editdata }: Props ) => {
     const [ mealType, setMealType ] = React.useState<number>(editflag ? editdata.mealType : 0);
     const [ mealDate, setMealDate ] = React.useState<string>(editflag ? editdata.date : "");
     const [ foodList, setFoodList ] = React.useState<MealItem[]>(editflag ? editdata.food : [{ name: "", qty: 1 }])
+
+    const [ presetList, setPresetList ] = React.useState<Preset[]>([]);
+
+    React.useEffect( () => {
+        const asyncFun = async () => {
+            const { data } = await axios.get<Preset[]>(APIBase + "/preset" + "/getPresets" + "?username=" + username);
+            setPresetList(data);
+        };
+        asyncFun().catch( (e) => window.alert(`Error fetching Preset List: ${ e }`) );
+    }, [])
 
     const getMealType = () => {
         return <select onChange={ (event) => setMealType(parseInt(event.target.value)) }>
@@ -55,6 +70,17 @@ const AddMealModal = ( { onClickClose, username, editflag, editdata }: Props ) =
         setFoodList(temp);
     }
 
+    const applyPreset = (index: number, event: React.FocusEvent<HTMLInputElement>) => {
+        if (event.target.value.startsWith('#')) {
+            const preset = presetList.filter( (preset) => preset.alias === event.target.value.slice(1));
+            if (preset.length > 0) {
+                const temp = [...foodList];
+                temp[index].name = preset[0].preset;
+                setFoodList(temp);
+            }
+        }
+    }
+
     const onClickPlusMinus = (option: string, index: number) => {
         const temp = [...foodList];
         if (option === "plus") {
@@ -78,22 +104,20 @@ const AddMealModal = ( { onClickClose, username, editflag, editdata }: Props ) =
 
     return (
         <>
-            Meal:
-            {getMealType()}
-            Date:
+            <span>Meal: {getMealType()} Date: </span>
             <input type={"date"} value={mealDate} onChange={ (event) => setMealDate(event.target.value) }/>
-            <button onClick={onClickClose}>close</button>
+            <button className={"close-button"} onClick={onClickClose}>close</button>
             <br/>
             { foodList.map( (foodItem, index) => (
                 <div className={"input-field"} key={index}>
-                    <input name={"name"} className={"food-name"} type={"text"} value={foodItem.name} onChange={ (event) => changeFoodItem(index, event) }/>
+                    <input name={"name"} className={"food-name"} type={"text"} value={foodItem.name} onChange={ (event) => changeFoodItem(index, event) } onBlur={ (event) => applyPreset(index, event) }/>
                     <span className={"food-x"}>×</span><span className={"minus"} onClick={ () => onClickPlusMinus("minus", index) }>-</span><input name={"qty"} className={"food-qty"} type={"text"} value={foodItem.qty}/><span className={"plus"} onClick={ () => onClickPlusMinus("plus", index) }>+</span>
-                    <button className={"remove-button"} onClick={ () => removeFoodItem(index) }>Remove</button>
+                    <button className={"food-remove-button"} onClick={ () => removeFoodItem(index) }>Remove</button>
                 </div>
             ))}
             
-            <button onClick={addFoodItem}>Add Food</button>
-            <button onClick={onSubmitHandler}>Submit</button>
+            <button className={"addfood-button"} onClick={addFoodItem}>Add Food</button>
+            <button className={"submit-button"} onClick={onSubmitHandler}>Submit</button>
         </>
     )
 }

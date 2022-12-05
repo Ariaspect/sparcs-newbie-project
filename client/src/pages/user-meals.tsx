@@ -73,12 +73,16 @@ const MealPage = () => {
                     .sort()
                     .map( (date) => // per date
                         <fieldset className={"day-block"}>
-                            <legend>{date}</legend>
+                            <legend>
+                                &nbsp;{date}&nbsp;
+                                <span>
+                                </span>
+                            </legend>
                             { mealList.filter( (meal) => meal.date === date )
                             .sort( (a, b) => a.mealType - b.mealType )
                             .map( (meal) => // per meal
                                 <div className={"meal-block"}>
-                                    <p className={"x-button"} onClick={ () => {deleteHandler(meal)} }>x</p>
+                                    <p className={"x-button"} onClick={ () => {deleteHandler(meal)} }><h3 className="x-button-h3">x</h3></p>
                                     <h3 className={"meal-type"} onClick={ () => {editMealHandler(meal.mealType, meal.date)} }>{mealTypeEnum[meal.mealType]}</h3>
                                     { meal.food.map( (foodItem) =>  // per foodItem
                                         <p className={"food-item"}>{foodItem.name} x {foodItem.qty}</p>
@@ -90,12 +94,12 @@ const MealPage = () => {
                 }
             </div>
             <Modal 
-                    isOpen={modalState} 
-                    onRequestClose={ () => setModalState(false) }
-                    style={ { overlay: { backgroundColor: 'rgba(0, 0, 0, 0.60' } } }
-                >
-                    <AddMealModal onClickClose={callbackModal} username={username} editflag={true} editdata={mealData}></AddMealModal>
-                </Modal>
+                isOpen={modalState} 
+                onRequestClose={ () => setModalState(false) }
+                style={ { overlay: { backgroundColor: 'rgba(0, 0, 0, 0.60' } } }
+            >
+                <AddMealModal onClickClose={callbackModal} username={username} editflag={true} editdata={mealData}></AddMealModal>
+            </Modal>
         </>
     
     )
