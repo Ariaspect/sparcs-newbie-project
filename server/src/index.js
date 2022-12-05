@@ -7,6 +7,7 @@ require('dotenv').config();
 const statusRouter = require('./routes/status');
 const userRouter = require('./routes/user');
 const mealRouter = require('./routes/meal');
+const presetRouter = require('./routes/preset');
 
 const app = express();
 const port = process.env.PORT;
@@ -28,6 +29,7 @@ app.use(cors(corsOptions));
 app.use('/status', statusRouter);
 app.use('/user', userRouter);
 app.use('/meal',mealRouter);
+app.use('/preset',presetRouter);
 
 const OMongooseOption = { useNewUrlParser: true, useUnifiedTopology: true };
 mongoose.connect(process.env.MONGO_URI, OMongooseOption).then(
