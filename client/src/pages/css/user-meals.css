@@ -1,0 +1,52 @@
+.legend {
+    color: gray;
+}
+
+h2 {
+    margin: 20px;
+}
+
+h3 {
+    margin-top: 10px;
+}
+
+.meal-type {
+    margin-left: 5px;
+}
+.meal-type:hover {
+    text-decoration: underline;
+}
+.food-item {
+    margin-left: 5px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.day-block {
+    border: 2px solid black;
+    margin: 20px 20px;
+    display: flex;
+    justify-content: start;
+}
+
+.meal-block {
+    box-sizing: border-box;
+    transition: box-shadow .3s;
+    min-height: 120px;
+    width: 20%;
+    padding: 10px;
+    margin: 0% 2%;
+    border: 1px solid black;
+    border-radius: 10%;
+    display: inline-block;
+}
+.meal-block:hover {
+    box-shadow: 0 0 12px rgba(33,33,33,.2); 
+  }
+
+.x-button {
+    float: right;
+    font-size: 18px;
+    color: red;
+    margin: 10px 20px;
+}
